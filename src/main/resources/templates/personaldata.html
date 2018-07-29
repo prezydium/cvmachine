@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,53 +9,53 @@
 <div class="container">
     <h1>Enter personal data:</h1>
     <div>
-        <form class="form-horizontal">
+        <form class="form-horizontal" action="#" th:action="@{/personaldata}" th:object="${userData}" method="post">
             <div class="form-group">
                 <label class="control-label col-sm-2" for="firstName">First Name:</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="firstName" id="firstName">
+                    <input class="form-control" type="text" name="firstName" id="firstName" th:field="*{firstName}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="lastName">Last Name:</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="lastName" id="lastName"><br>
+                    <input class="form-control" type="text" name="lastName" id="lastName" th:field="*{lastName}"><br>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="street">Street with building and apartment:</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="street" id="street"><br>
+                    <input class="form-control" type="text" name="street" id="street" th:field="*{address.street}"><br>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="postalCode">Postal Code:</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="postalCode" id="postalCode"><br>
+                    <input class="form-control" type="text" name="postalCode" id="postalCode" th:field="*{address.postalCode}"><br>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="city">City:</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="city" id="city"><br>
+                    <input class="form-control" type="text" name="city" id="city" th:field="*{address.city}"><br>
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="telephone">Telephone number:</label>
+                <label class="control-label col-sm-2" for="phone" th:field="*{phone}">Telephone number:</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="telephone" id="telephone"><br>
+                    <input class="form-control" type="text" name="phone" id="phone"><br>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="linkedIn">Link to LinkedIn profile:</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="linkedIn" id="linkedIn"><br>
+                    <input class="form-control" type="text" name="linkedIn" id="linkedIn" th:field="*{linkedInProfile}"><br>
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="gitHub">Link to GitHub reposiotry:</label>
+                <label class="control-label col-sm-2" for="vcsRepo">Link to Version Control System repository:</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" name="github" id="gitHub"></div>
+                    <input class="form-control" type="text" name="vcsRepo" id="vcsRepo" th:field="*{vcsRepo}"></div>
             </div>
             <br><br>
             <input type="submit" class="btn btn-primary" value="Submit data">
