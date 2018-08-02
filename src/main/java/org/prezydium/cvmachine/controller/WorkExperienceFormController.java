@@ -24,7 +24,7 @@ public class WorkExperienceFormController {
         if (httpSession.getAttribute("experience") == null) {
             modelAndView.addObject("experience", new WorkExperience());
         } else {
-            modelAndView.addObject("experience", httpSession.getAttribute("education"));
+            modelAndView.addObject("experience", httpSession.getAttribute("experience"));
         }
         return modelAndView;
     }
