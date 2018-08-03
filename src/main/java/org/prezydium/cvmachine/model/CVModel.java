@@ -7,7 +7,8 @@ public class CVModel {
     private UserData userData;
     private List<Education> educationList;
     private List<WorkExperience> workExperienceList;
-    private List<Skill> skillList;
+    private List<MainSkill> mainSkillList;
+    private List<String> minorSkills;
     private String legalNote;
 
 
