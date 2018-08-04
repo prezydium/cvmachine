@@ -5,6 +5,7 @@ public class UserData {
     private String firstName;
     private String lastName;
     private Address address;
+    private String email;
     private String phone;
     private String linkedInProfile;
     private String vcsRepo;
@@ -36,6 +37,14 @@ public class UserData {
         this.address = address;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -60,12 +69,14 @@ public class UserData {
         this.vcsRepo = vcsRepo;
     }
 
+
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("UserData{");
+        final StringBuilder sb = new StringBuilder("UserData{");
         sb.append("firstName='").append(firstName).append('\'');
         sb.append(", lastName='").append(lastName).append('\'');
         sb.append(", address=").append(address);
+        sb.append(", email='").append(email).append('\'');
         sb.append(", phone='").append(phone).append('\'');
         sb.append(", linkedInProfile='").append(linkedInProfile).append('\'');
         sb.append(", vcsRepo='").append(vcsRepo).append('\'');
