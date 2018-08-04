@@ -9,17 +9,12 @@
 <div class="container">
     <h1>Enter skill info:</h1>
     <div>
-        <form class="form-horizontal" action="#" th:action="@{/main-skill}" th:object="${mainSkill}" method="post">
+        <form class="form-horizontal" action="#" th:action="@{/skill}" th:object="${skill}" method="post">
+
             <div class="form-group">
-                <label class="control-label col-sm-2" for="points">Skill points from 1 to 10:</label>
+                <label class="control-label col-sm-2" for="name">Skill name:</label>
                 <div class="col-sm-6">
-                    <input class="form-control" type="number" name="points" id="points" th:field="*{points}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="skillName">Skill name:</label>
-                <div class="col-sm-6">
-                    <input class="form-control" type="text" name="skillName" id="skillName" th:field="*{skillName}">
+                    <input class="form-control" type="text" name="name" id="name" th:field="*{name}">
                 </div>
             </div>
             <br><br>

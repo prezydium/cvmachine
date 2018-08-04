@@ -12,11 +12,12 @@ public class MainViewController {
 
     @GetMapping("/")
     public ModelAndView welcomeView(HttpSession httpSession) {
-        if (httpSession.getAttribute("CVModel") == null) {
+        httpSession.setAttribute("cvModel", new TestUser().create()); //TODO test line
+        if (httpSession.getAttribute("cvModel") == null) {
             return new ModelAndView("index");
         } else {
             ModelAndView modelAndView = new ModelAndView("cv-in-progress");
-            CVModel cvModel = (CVModel) httpSession.getAttribute("CVModel");
+            CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
             modelAndView.addObject(cvModel);
             return modelAndView;
         }
