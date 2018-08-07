@@ -12,7 +12,9 @@ public class MainViewController {
 
     @GetMapping("/")
     public ModelAndView welcomeView(HttpSession httpSession) {
-        httpSession.setAttribute("cvModel", new TestUser().create()); //TODO test line
+        if (httpSession.getAttribute("cvModel") == null) {
+            httpSession.setAttribute("cvModel", new TestUser().create()); //TODO test method
+        }
         if (httpSession.getAttribute("cvModel") == null) {
             return new ModelAndView("index");
         } else {

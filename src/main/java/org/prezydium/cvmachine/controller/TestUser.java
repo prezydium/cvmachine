@@ -18,6 +18,7 @@ public class TestUser {
         userData.setLinkedInProfile("www.test.pl/test");
         userData.setPhone("111-111-111");
         userData.setVcsRepo("github.com/prezydium");
+        userData.setEmail("test@ee.ee");
         Address address = new Address();
         address.setCity("Gdańsk");
         address.setPostalCode("00-000");

@@ -54,6 +54,9 @@
         </div>
         <div class="col-md-10" th:utext="${CVModel.userData.vcsRepo}"></div>
     </div>
+    <form class="form-horizontal" action="/personaldata" method="get">
+        <input type="submit" class="btn btn-primary" value="Edit Personal Data">
+    </form>
     <br><br>
     <div class="row">
         Education Data:
