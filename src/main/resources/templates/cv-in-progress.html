@@ -72,6 +72,11 @@
             <div class="col-md-2" th:text="${education.schoolName}"></div>
             <div class="col-md-10" th:text="${education.description}"></div>
         </div>
+        <div class="row">
+            <form class="form-horizontal" th:action="@{/education(id =${education.id})}" method="get">
+                <input type="submit" class="btn btn-primary" value="Edit Education">
+            </form>
+        </div>
         <br>
     </div>
     <br><br>

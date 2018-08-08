@@ -1,5 +1,6 @@
 package org.prezydium.cvmachine.controller;
 
+import org.prezydium.cvmachine.model.CVModel;
 import org.prezydium.cvmachine.model.Education;
 import org.prezydium.cvmachine.model.UserData;
 import org.slf4j.Logger;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -21,11 +23,19 @@ public class EducationFormController {
     @GetMapping(path = "/education")
     public ModelAndView personalDataProvider(HttpSession httpSession) {
         ModelAndView modelAndView = new ModelAndView("education");
-        if (httpSession.getAttribute("education") == null) {
+        if (httpSession.getAttribute("editEducation") == null) {
             modelAndView.addObject("education", new Education());
         } else {
-            modelAndView.addObject("education", httpSession.getAttribute("education"));
+            modelAndView.addObject("education", httpSession.getAttribute("editEducation"));
         }
+        return modelAndView;
+    }
+    @GetMapping(path = "/education", params = "id")
+    public ModelAndView editEducation(HttpSession httpSession, @RequestParam("id") long id) {
+        ModelAndView modelAndView = new ModelAndView("education");
+        CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
+        Education educationToEdit = cvModel.getEducationList().get((int) id);
+        modelAndView.addObject("education", educationToEdit);
         return modelAndView;
     }
 

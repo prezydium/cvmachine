@@ -28,10 +28,12 @@ public class TestUser {
         cvModel.setLegalNote("test legal note");
         Education education = new Education();
         Education education2 = new Education();
+        education.setId(0);
         education.setSchoolName("INFOSHER");
         education.setStartDate(LocalDate.of(2015, 1, 22));
         education.setEndDate(LocalDate.of(2017, 7, 4));
         education.setDescription("LERNEN Programmer\n * much lernen\n * much fun \n * arbeit");
+        education2.setId(2);
         education2.setSchoolName("kindergarten");
         education2.setStartDate(LocalDate.of(2015, 1, 22));
         education2.setEndDate(LocalDate.of(2017, 7, 4));
