@@ -1,7 +1,6 @@
 package org.prezydium.cvmachine.controller;
 
 import org.prezydium.cvmachine.model.CVModel;
-import org.prezydium.cvmachine.model.Education;
 import org.prezydium.cvmachine.model.WorkExperience;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,13 +33,13 @@ public class WorkExperienceFormController {
     public ModelAndView editWorkExperience(HttpSession httpSession, @RequestParam("id") long id) {
         ModelAndView modelAndView = new ModelAndView("experience");
         CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
-        WorkExperience workExperience = cvModel.getWorkExperienceList().get((int) id);
+        WorkExperience workExperience = cvModel.getWorkExperienceMap().get((int) id);
         modelAndView.addObject("experience", workExperience);
         return modelAndView;
     }
 
     @PostMapping("/experience")
-    public RedirectView saveExperience(@ModelAttribute WorkExperienceFormController experience, HttpSession httpSession) {
+    public RedirectView saveExperience(@ModelAttribute WorkExperience experience, HttpSession httpSession) {
         LOG.info("Processing experience: ".concat(experience.toString()));
         httpSession.setAttribute("experience", experience);
         return new RedirectView("/");

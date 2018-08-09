@@ -63,19 +63,23 @@
     <div class="row">
         Education Data:
     </div>
-    <div id="edu" th:each="education : ${CVModel.educationList}">
+    <div id="edu" th:each="educationMapInstance : ${CVModel.educationMap}">
         <div class="row cv-date">
             <div class="col-md-10 col-md-offset-2">
-                <span th:text="'From' +  ${education.startDate}"></span>
-                <span th:text="' to ' + ${education.endDate}"></span>
+                <span th:text="'From' +  ${educationMapInstance.value.startDate}"></span>
+                <span th:text="' to ' + ${educationMapInstance.value.endDate}"></span>
             </div>
         </div>
+        <!--<tr th:each="instance : ${analysis.instanceMap}">
+            <td th:text="${instance.key}">keyvalue</td>
+            <td th:text="${instance.value.numOfData}">num</td>
+        </tr>-->
         <div class="row">
-            <div class="col-md-2" th:text="${education.schoolName}"></div>
-            <div class="col-md-10" th:text="${education.description}"></div>
+            <div class="col-md-2" th:text="${educationMapInstance.value.schoolName}"></div>
+            <div class="col-md-10" th:text="${educationMapInstance.value.description}"></div>
         </div>
         <div class="row">
-            <a class="btn btn-primary pull-right" th:href="@{/education(id=${education.id})}">Edit education info</a>
+            <a class="btn btn-primary pull-right" th:href="@{/education(id=${educationMapInstance.value.id})}">Edit education info</a>
         </div>
         <br>
     </div>
@@ -84,19 +88,19 @@
     <div class="row">
         Work Experience:
     </div>
-    <div id="work" th:each="workExperience : ${CVModel.workExperienceList}">
+    <div id="work" th:each="workExperienceInstance : ${CVModel.workExperienceMap}">
         <div class="row cv-date">
             <div class="col-md-10 col-md-offset-2">
-                <span th:text="'From' + ${workExperience.startDate}"></span>
-                <span th:text="' to ' + ${workExperience.endDate}"></span>
+                <span th:text="'From' + ${workExperienceInstance.value.startDate}"></span>
+                <span th:text="' to ' + ${workExperienceInstance.value.endDate}"></span>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2" th:text="${workExperience.companyName}"></div>
-            <div class="col-md-10" th:text="${workExperience.description}"></div>
+            <div class="col-md-2" th:text="${workExperienceInstance.value.companyName}"></div>
+            <div class="col-md-10" th:text="${workExperienceInstance.value.description}"></div>
         </div>
         <div class="row">
-            <a class="btn btn-primary pull-right" th:href="@{/experience(id=${workExperience.id})}">Edit work experience info</a>
+            <a class="btn btn-primary pull-right" th:href="@{/experience(id=${workExperienceInstance.value.id})}">Edit work experience info</a>
         </div>
         <br>
     </div>
@@ -104,9 +108,9 @@
     <div class="row">
         Skills:
     </div>
-    <div id="skills" th:each="skill : ${CVModel.skillList}">
+    <div id="skills" th:each="skillInstance : ${CVModel.skillMap}">
         <div class="row">
-            <div class="col-md-5" th:text="${skill.name}"></div>
+            <div class="col-md-5" th:text="${skillInstance.value.name}"></div>
         </div>
         <br>
     </div>

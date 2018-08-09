@@ -5,6 +5,7 @@ import org.prezydium.cvmachine.model.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.TreeMap;
 
 public class TestUser {
 
@@ -38,9 +39,9 @@ public class TestUser {
         education2.setStartDate(LocalDate.of(2015, 1, 22));
         education2.setEndDate(LocalDate.of(2017, 7, 4));
         education2.setDescription("LERNEN Programmer in kindergarten\n * fun\n * much fun");
-        cvModel.setEducationList(new ArrayList<Education>() {{
-            add(education);
-            add(education2);
+        cvModel.setEducationMap(new TreeMap<Long, Education>() {{
+            put(0L, education);
+            put(1L, education2);
         }});
         WorkExperience workExperience = new WorkExperience();
         workExperience.setId(0);
@@ -54,9 +55,9 @@ public class TestUser {
         workExperience2.setEndDate(LocalDate.of(2020, 4, 4));
         workExperience2.setDescription("Making ordnung\n * arbeit zum ordnung");
         workExperience2.setCompanyName("CleanUp House");
-        cvModel.setWorkExperienceList(new ArrayList<WorkExperience>() {{
-            add(workExperience);
-            add(workExperience2);
+        cvModel.setWorkExperienceMap(new TreeMap<Long, WorkExperience>() {{
+            put(0L, workExperience);
+            put(1L, workExperience2);
         }});
         Skill skill = new Skill();
         skill.setName("JAVA");
@@ -64,7 +65,12 @@ public class TestUser {
         skill2.setName("HTML");
         Skill skill3 = new Skill();
         skill3.setName("scrum");
-        cvModel.setSkillList(Arrays.asList(skill, skill2, skill3));
+        cvModel.setSkillMap(new TreeMap<Long, Skill>(){{
+            put(0L, new Skill(0L, "JAVA"));
+            put(1L, new Skill(1L, "HTML"));
+            put(2L, new Skill(2L, "scrum"));
+
+        }});
         return cvModel;
     }
 

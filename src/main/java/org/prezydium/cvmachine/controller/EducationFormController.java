@@ -2,7 +2,6 @@ package org.prezydium.cvmachine.controller;
 
 import org.prezydium.cvmachine.model.CVModel;
 import org.prezydium.cvmachine.model.Education;
-import org.prezydium.cvmachine.model.UserData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -31,7 +30,7 @@ public class EducationFormController {
     public ModelAndView editEducation(HttpSession httpSession, @RequestParam("id") long id) {
         ModelAndView modelAndView = new ModelAndView("education");
         CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
-        Education educationToEdit = cvModel.getEducationList().get((int) id);
+        Education educationToEdit = cvModel.getEducationMap().get((int) id);
         modelAndView.addObject("education", educationToEdit);
         return modelAndView;
     }
