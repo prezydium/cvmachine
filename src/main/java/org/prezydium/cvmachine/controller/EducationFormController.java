@@ -30,7 +30,7 @@ public class EducationFormController {
     public ModelAndView editEducation(HttpSession httpSession, @RequestParam("id") long id) {
         ModelAndView modelAndView = new ModelAndView("education");
         CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
-        Education educationToEdit = cvModel.getEducationMap().get((int) id);
+        Education educationToEdit = cvModel.getEducationMap().get(id);
         modelAndView.addObject("education", educationToEdit);
         return modelAndView;
     }
@@ -38,7 +38,8 @@ public class EducationFormController {
     @PostMapping("/education")
     public RedirectView saveEducation(@ModelAttribute Education education, HttpSession httpSession) {
         LOG.info("Processing education: ".concat(education.toString()));
-        httpSession.setAttribute("education", education);
+        CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
+        cvModel.getEducationMap().put(education.getId(), education);
         return new RedirectView("/");
     }
 }

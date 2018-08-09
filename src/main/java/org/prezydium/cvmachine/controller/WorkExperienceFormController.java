@@ -22,18 +22,15 @@ public class WorkExperienceFormController {
     @GetMapping(path = "/experience")
     public ModelAndView workExperienceProvider(HttpSession httpSession) {
         ModelAndView modelAndView = new ModelAndView("experience");
-        if (httpSession.getAttribute("experience") == null) {
-            modelAndView.addObject("experience", new WorkExperience());
-        } else {
-            modelAndView.addObject("experience", httpSession.getAttribute("experience"));
-        }
+        modelAndView.addObject("experience", new WorkExperience());
         return modelAndView;
     }
+
     @GetMapping(path = "/experience", params = "id")
     public ModelAndView editWorkExperience(HttpSession httpSession, @RequestParam("id") long id) {
         ModelAndView modelAndView = new ModelAndView("experience");
         CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
-        WorkExperience workExperience = cvModel.getWorkExperienceMap().get((int) id);
+        WorkExperience workExperience = cvModel.getWorkExperienceMap().get(id);
         modelAndView.addObject("experience", workExperience);
         return modelAndView;
     }
@@ -41,7 +38,8 @@ public class WorkExperienceFormController {
     @PostMapping("/experience")
     public RedirectView saveExperience(@ModelAttribute WorkExperience experience, HttpSession httpSession) {
         LOG.info("Processing experience: ".concat(experience.toString()));
-        httpSession.setAttribute("experience", experience);
+        CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
+        cvModel.getWorkExperienceMap().put(experience.getId(), experience);
         return new RedirectView("/");
     }
 }
