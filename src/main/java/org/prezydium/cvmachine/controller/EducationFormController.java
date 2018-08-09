@@ -21,15 +21,12 @@ public class EducationFormController {
     private Logger LOG = LoggerFactory.getLogger(EducationFormController.class);
 
     @GetMapping(path = "/education")
-    public ModelAndView personalDataProvider(HttpSession httpSession) {
+    public ModelAndView educationProvider(HttpSession httpSession) {
         ModelAndView modelAndView = new ModelAndView("education");
-        if (httpSession.getAttribute("editEducation") == null) {
-            modelAndView.addObject("education", new Education());
-        } else {
-            modelAndView.addObject("education", httpSession.getAttribute("editEducation"));
-        }
+        modelAndView.addObject("education",new Education());
         return modelAndView;
     }
+
     @GetMapping(path = "/education", params = "id")
     public ModelAndView editEducation(HttpSession httpSession, @RequestParam("id") long id) {
         ModelAndView modelAndView = new ModelAndView("education");
@@ -40,7 +37,7 @@ public class EducationFormController {
     }
 
     @PostMapping("/education")
-    public RedirectView savePersonalData(@ModelAttribute Education education, HttpSession httpSession) {
+    public RedirectView saveEducation(@ModelAttribute Education education, HttpSession httpSession) {
         LOG.info("Processing education: ".concat(education.toString()));
         httpSession.setAttribute("education", education);
         return new RedirectView("/");

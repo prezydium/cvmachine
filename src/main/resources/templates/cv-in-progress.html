@@ -54,10 +54,12 @@
         </div>
         <div class="col-md-10" th:utext="${CVModel.userData.vcsRepo}"></div>
     </div>
-    <form class="form-horizontal" action="/personaldata" method="get">
-        <input type="submit" class="btn btn-primary" value="Edit Personal Data">
-    </form>
-    <br><br>
+    <div class="row">
+        <a class="btn btn-primary pull-right" href="/personaldata">Edit personal data</a>
+    </div>
+    <br>
+    <hr style="width: 80%; color: black; height: 2px; background-color:black;" />
+    <br>
     <div class="row">
         Education Data:
     </div>
@@ -73,12 +75,12 @@
             <div class="col-md-10" th:text="${education.description}"></div>
         </div>
         <div class="row">
-            <a class="btn btn-primary" th:href="@{/education(id=${education.id})}">Edit education info</a>
+            <a class="btn btn-primary pull-right" th:href="@{/education(id=${education.id})}">Edit education info</a>
         </div>
-
         <br>
     </div>
-    <br><br>
+    <hr style="width: 80%; color: black; height: 2px; background-color:black;" />
+    <br>
     <div class="row">
         Work Experience:
     </div>
@@ -93,10 +95,12 @@
             <div class="col-md-2" th:text="${workExperience.companyName}"></div>
             <div class="col-md-10" th:text="${workExperience.description}"></div>
         </div>
+        <div class="row">
+            <a class="btn btn-primary pull-right" th:href="@{/experience(id=${workExperience.id})}">Edit work experience info</a>
+        </div>
         <br>
     </div>
-    <br><br>
-
+    <hr style="width: 80%; color: black; height: 2px; background-color:black;" />
     <div class="row">
         Skills:
     </div>
@@ -106,7 +110,7 @@
         </div>
         <br>
     </div>
-    <br><br>
+    <br>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

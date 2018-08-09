@@ -33,7 +33,7 @@ public class TestUser {
         education.setStartDate(LocalDate.of(2015, 1, 22));
         education.setEndDate(LocalDate.of(2017, 7, 4));
         education.setDescription("LERNEN Programmer\n * much lernen\n * much fun \n * arbeit");
-        education2.setId(2);
+        education2.setId(1);
         education2.setSchoolName("kindergarten");
         education2.setStartDate(LocalDate.of(2015, 1, 22));
         education2.setEndDate(LocalDate.of(2017, 7, 4));
@@ -43,8 +43,10 @@ public class TestUser {
             add(education2);
         }});
         WorkExperience workExperience = new WorkExperience();
+        workExperience.setId(0);
         WorkExperience workExperience2 = new WorkExperience();
         workExperience.setStartDate(LocalDate.of(2014, 1, 22));
+        workExperience2.setId(1);
         workExperience.setEndDate(LocalDate.of(2016, 12, 4));
         workExperience.setDescription("NIERZĄD\n * nothing lernen\n * much fun \n * arbeit not frei");
         workExperience.setCompanyName("CITYHALL");
