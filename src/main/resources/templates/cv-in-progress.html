@@ -73,10 +73,9 @@
             <div class="col-md-10" th:text="${education.description}"></div>
         </div>
         <div class="row">
-            <form class="form-horizontal" th:action="@{/education(id =${education.id})}" method="get">
-                <input type="submit" class="btn btn-primary" value="Edit Education">
-            </form>
+            <a class="btn btn-primary" th:href="@{/education(id=${education.id})}">Edit education info</a>
         </div>
+
         <br>
     </div>
     <br><br>
