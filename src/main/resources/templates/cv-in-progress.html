@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>IN PROGRESS</h1>
+    <h1>CREATION IN PROGRESS</h1>
     <div class="row">
         Personal Data:
     </div>
@@ -54,52 +54,67 @@
         </div>
         <div class="col-md-10" th:utext="${CVModel.userData.vcsRepo}"></div>
     </div>
-    <br><br>
+    <div class="row">
+        <a class="btn btn-primary pull-right" href="/personaldata">Edit personal data</a>
+    </div>
+    <br>
+    <hr style="width: 80%; color: black; height: 2px; background-color:black;" />
+    <br>
     <div class="row">
         Education Data:
     </div>
-    <div id="edu" th:each="education : ${CVModel.educationList}">
+    <div id="edu" th:each="educationMapInstance : ${CVModel.educationMap}">
         <div class="row cv-date">
             <div class="col-md-10 col-md-offset-2">
-                <span th:text="'From' +  ${education.startDate}"></span>
-                <span th:text="' to ' + ${education.endDate}"></span>
+                <span th:text="'From' +  ${educationMapInstance.value.startDate}"></span>
+                <span th:text="' to ' + ${educationMapInstance.value.endDate}"></span>
             </div>
         </div>
+        <!--<tr th:each="instance : ${analysis.instanceMap}">
+            <td th:text="${instance.key}">keyvalue</td>
+            <td th:text="${instance.value.numOfData}">num</td>
+        </tr>-->
         <div class="row">
-            <div class="col-md-2" th:text="${education.schoolName}"></div>
-            <div class="col-md-10" th:text="${education.description}"></div>
+            <div class="col-md-2" th:text="${educationMapInstance.value.schoolName}"></div>
+            <div class="col-md-10" th:text="${educationMapInstance.value.description}"></div>
+        </div>
+        <div class="row">
+            <a class="btn btn-primary pull-right" th:href="@{/education(id=${educationMapInstance.value.id})}">Edit education info</a>
         </div>
         <br>
     </div>
-    <br><br>
+    <hr style="width: 80%; color: black; height: 2px; background-color:black;" />
+    <br>
     <div class="row">
         Work Experience:
     </div>
-    <div id="work" th:each="workExperience : ${CVModel.workExperienceList}">
+    <div id="work" th:each="workExperienceInstance : ${CVModel.workExperienceMap}">
         <div class="row cv-date">
             <div class="col-md-10 col-md-offset-2">
-                <span th:text="'From' + ${workExperience.startDate}"></span>
-                <span th:text="' to ' + ${workExperience.endDate}"></span>
+                <span th:text="'From' + ${workExperienceInstance.value.startDate}"></span>
+                <span th:text="' to ' + ${workExperienceInstance.value.endDate}"></span>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2" th:text="${workExperience.companyName}"></div>
-            <div class="col-md-10" th:text="${workExperience.description}"></div>
+            <div class="col-md-2" th:text="${workExperienceInstance.value.companyName}"></div>
+            <div class="col-md-10" th:text="${workExperienceInstance.value.description}"></div>
+        </div>
+        <div class="row">
+            <a class="btn btn-primary pull-right" th:href="@{/experience(id=${workExperienceInstance.value.id})}">Edit work experience info</a>
         </div>
         <br>
     </div>
-    <br><br>
-
+    <hr style="width: 80%; color: black; height: 2px; background-color:black;" />
     <div class="row">
         Skills:
     </div>
-    <div id="skills" th:each="skill : ${CVModel.skillList}">
+    <div id="skills" th:each="skillInstance : ${CVModel.skillMap}">
         <div class="row">
-            <div class="col-md-5" th:text="${skill.name}"></div>
+            <div class="col-md-5" th:text="${skillInstance.value.name}"></div>
         </div>
         <br>
     </div>
-    <br><br>
+    <br>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

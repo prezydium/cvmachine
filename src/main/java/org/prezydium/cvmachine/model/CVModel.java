@@ -1,14 +1,14 @@
 package org.prezydium.cvmachine.model;
 
-import java.util.List;
+import java.util.Objects;
+import java.util.TreeMap;
 
 public class CVModel {
 
     private UserData userData;
-    private List<Education> educationList;
-    private List<WorkExperience> workExperienceList;
-    private List<Skill> skillList;
-    private List<String> minorSkills;
+    private TreeMap<Long, Education> educationMap;
+    private TreeMap<Long, WorkExperience> workExperienceMap;
+    private TreeMap<Long, Skill> skillMap;
     private String legalNote;
 
     public CVModel() {
@@ -22,36 +22,28 @@ public class CVModel {
         this.userData = userData;
     }
 
-    public List<Education> getEducationList() {
-        return educationList;
+    public TreeMap<Long, Education> getEducationMap() {
+        return educationMap;
     }
 
-    public void setEducationList(List<Education> educationList) {
-        this.educationList = educationList;
+    public void setEducationMap(TreeMap<Long, Education> educationMap) {
+        this.educationMap = educationMap;
     }
 
-    public List<WorkExperience> getWorkExperienceList() {
-        return workExperienceList;
+    public TreeMap<Long, WorkExperience> getWorkExperienceMap() {
+        return workExperienceMap;
     }
 
-    public void setWorkExperienceList(List<WorkExperience> workExperienceList) {
-        this.workExperienceList = workExperienceList;
+    public void setWorkExperienceMap(TreeMap<Long, WorkExperience> workExperienceMap) {
+        this.workExperienceMap = workExperienceMap;
     }
 
-    public List<Skill> getSkillList() {
-        return skillList;
+    public TreeMap<Long, Skill> getSkillMap() {
+        return skillMap;
     }
 
-    public void setSkillList(List<Skill> skillList) {
-        this.skillList = skillList;
-    }
-
-    public List<String> getMinorSkills() {
-        return minorSkills;
-    }
-
-    public void setMinorSkills(List<String> minorSkills) {
-        this.minorSkills = minorSkills;
+    public void setSkillMap(TreeMap<Long, Skill> skillMap) {
+        this.skillMap = skillMap;
     }
 
     public String getLegalNote() {
@@ -63,13 +55,30 @@ public class CVModel {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CVModel cvModel = (CVModel) o;
+        return Objects.equals(userData, cvModel.userData) &&
+                Objects.equals(educationMap, cvModel.educationMap) &&
+                Objects.equals(workExperienceMap, cvModel.workExperienceMap) &&
+                Objects.equals(skillMap, cvModel.skillMap) &&
+                Objects.equals(legalNote, cvModel.legalNote);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(userData, educationMap, workExperienceMap, skillMap, legalNote);
+    }
+
+    @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("CVModel{");
         sb.append("userData=").append(userData);
-        sb.append(", educationList=").append(educationList);
-        sb.append(", workExperienceList=").append(workExperienceList);
-        sb.append(", skillList=").append(skillList);
-        sb.append(", minorSkills=").append(minorSkills);
+        sb.append(", educationMap=").append(educationMap);
+        sb.append(", workExperienceMap=").append(workExperienceMap);
+        sb.append(", skillMap=").append(skillMap);
         sb.append(", legalNote='").append(legalNote).append('\'');
         sb.append('}');
         return sb.toString();

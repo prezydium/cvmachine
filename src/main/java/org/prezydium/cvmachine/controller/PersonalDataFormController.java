@@ -1,5 +1,6 @@
 package org.prezydium.cvmachine.controller;
 
+import org.prezydium.cvmachine.model.CVModel;
 import org.prezydium.cvmachine.model.UserData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,10 +21,11 @@ public class PersonalDataFormController {
     @GetMapping(path = "/personaldata")
     public ModelAndView personalDataProvider(HttpSession httpSession) {
         ModelAndView modelAndView = new ModelAndView("personaldata");
-        if (httpSession.getAttribute("userData") == null) {
+        if (httpSession.getAttribute("cvModel") == null) {
             modelAndView.addObject("userData", new UserData());
         } else {
-            modelAndView.addObject("userData", httpSession.getAttribute("userData"));
+            CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
+            modelAndView.addObject("userData", cvModel.getUserData());
         }
         return modelAndView;
     }
@@ -31,7 +33,12 @@ public class PersonalDataFormController {
     @PostMapping("/personaldata")
     public RedirectView savePersonalData(@ModelAttribute UserData userDataFromForm, HttpSession httpSession) {
         LOG.info("Processing user: ".concat(userDataFromForm.toString()));
-        httpSession.setAttribute("userData", userDataFromForm);
+        CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
+        if (cvModel == null){
+            cvModel = new CVModel();
+        }
+        cvModel.setUserData(userDataFromForm);
+        httpSession.setAttribute("cvModel", cvModel);
         return new RedirectView("/");
     }
 }
