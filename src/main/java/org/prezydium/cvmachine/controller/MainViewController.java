@@ -20,7 +20,7 @@ public class MainViewController {
         } else {
             ModelAndView modelAndView = new ModelAndView("cv-in-progress");
             CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
-            modelAndView.addObject(cvModel);
+            modelAndView.addObject("cvModel", cvModel);
             return modelAndView;
         }
     }

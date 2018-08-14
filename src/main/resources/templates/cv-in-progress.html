@@ -7,7 +7,7 @@
     <title>Welcome to cvmachine!</title>
 </head>
 <body>
-<div class="container">
+<div class="container" th:object="${cvModel}">
     <h1>CREATION IN PROGRESS</h1>
     <div class="row">
         Personal Data:
@@ -16,43 +16,43 @@
         <div class="col-md-2">
             First name:
         </div>
-        <div class="col-md-10" th:utext="${CVModel.userData.firstName}"></div>
+        <div class="col-md-10" th:utext="*{userData.firstName}"></div>
     </div>
     <div class="row">
         <div class="col-md-2">
             Last name:
         </div>
-        <div class="col-md-10" th:utext="${CVModel.userData.lastName}"></div>
+        <div class="col-md-10" th:utext="*{userData.lastName}"></div>
     </div>
     <div class="row">
         <div class="col-md-2">
             Address:
         </div>
-        <div class="col-md-10" th:utext="${CVModel.userData.address}"></div>
+        <div class="col-md-10" th:utext="*{userData.address}"></div>
     </div>
     <div class="row">
         <div class="col-md-2">
             Email:
         </div>
-        <div class="col-md-10" th:utext="${CVModel.userData.email}"></div>
+        <div class="col-md-10" th:utext="*{userData.email}"></div>
     </div>
     <div class="row">
         <div class="col-md-2">
             Phone
         </div>
-        <div class="col-md-10" th:utext="${CVModel.userData.phone}"></div>
+        <div class="col-md-10" th:utext="*{userData.phone}"></div>
     </div>
     <div class="row">
         <div class="col-md-2">
             LinkedIn:
         </div>
-        <div class="col-md-10" th:utext="${CVModel.userData.linkedInProfile}"></div>
+        <div class="col-md-10" th:utext="*{userData.linkedInProfile}"></div>
     </div>
     <div class="row">
         <div class="col-md-2">
             VCS repo:
         </div>
-        <div class="col-md-10" th:utext="${CVModel.userData.vcsRepo}"></div>
+        <div class="col-md-10" th:utext="*{userData.vcsRepo}"></div>
     </div>
     <div class="row">
         <a class="btn btn-primary pull-right" href="/personaldata">Edit personal data</a>
@@ -62,8 +62,11 @@
     <br>
     <div class="row">
         Education Data:
+        <button type="button" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-plus-sign"></span>
+        </button>
     </div>
-    <div id="edu" th:each="educationMapInstance : ${CVModel.educationMap}">
+    <div id="edu" th:each="educationMapInstance : *{educationMap}">
         <div class="row cv-date">
             <div class="col-md-10 col-md-offset-2">
                 <span th:text="'From' +  ${educationMapInstance.value.startDate}"></span>
@@ -85,8 +88,11 @@
     <br>
     <div class="row">
         Work Experience:
+        <button type="button" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-plus-sign"></span>
+        </button>
     </div>
-    <div id="work" th:each="workExperienceInstance : ${CVModel.workExperienceMap}">
+    <div id="work" th:each="workExperienceInstance : *{workExperienceMap}">
         <div class="row cv-date">
             <div class="col-md-10 col-md-offset-2">
                 <span th:text="'From' + ${workExperienceInstance.value.startDate}"></span>
@@ -106,8 +112,11 @@
     <hr style="width: 80%; color: black; height: 2px; background-color:black;" />
     <div class="row">
         Skills:
+        <button type="button" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-plus-sign"></span>
+        </button>
     </div>
-    <div id="skills" th:each="skillInstance : ${CVModel.skillMap}">
+    <div id="skills" th:each="skillInstance : *{skillMap}">
         <div class="row">
             <div class="col-md-5" th:text="${skillInstance.value.name}"></div>
         </div>
