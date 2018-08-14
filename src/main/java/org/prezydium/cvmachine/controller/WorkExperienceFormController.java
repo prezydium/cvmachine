@@ -26,13 +26,21 @@ public class WorkExperienceFormController {
         return modelAndView;
     }
 
-    @GetMapping(path = "/experience", params = "id")
+    @GetMapping(path = "/experience", params = {"id", "edit"})
     public ModelAndView editWorkExperience(HttpSession httpSession, @RequestParam("id") long id) {
         ModelAndView modelAndView = new ModelAndView("experience");
         CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
         WorkExperience workExperience = cvModel.getWorkExperienceMap().get(id);
         modelAndView.addObject("experience", workExperience);
         return modelAndView;
+    }
+
+    @GetMapping(path = "/experience", params = {"id", "delete"})
+    public RedirectView deleteWorkExperience(HttpSession httpSession, @RequestParam("id") long id) {
+        CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
+        WorkExperience workExperience = cvModel.getWorkExperienceMap().remove(id);
+        httpSession.setAttribute("cvModel", cvModel);
+        return new RedirectView("/");
     }
 
     @PostMapping("/experience")

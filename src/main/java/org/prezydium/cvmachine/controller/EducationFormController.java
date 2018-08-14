@@ -26,13 +26,21 @@ public class EducationFormController {
         return modelAndView;
     }
 
-    @GetMapping(path = "/education", params = "id")
+    @GetMapping(path = "/education", params = {"id", "edit"})
     public ModelAndView editEducation(HttpSession httpSession, @RequestParam("id") long id) {
         ModelAndView modelAndView = new ModelAndView("education");
         CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
         Education educationToEdit = cvModel.getEducationMap().get(id);
         modelAndView.addObject("education", educationToEdit);
         return modelAndView;
+    }
+
+    @GetMapping(path = "/education", params = {"id", "delete"})
+    public RedirectView deleteEducation(HttpSession httpSession, @RequestParam("id") long id) {
+        CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
+        cvModel.getEducationMap().remove(id);
+        httpSession.setAttribute("cvModel", cvModel);
+        return new RedirectView("/");
     }
 
     @PostMapping("/education")
