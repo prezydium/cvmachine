@@ -5,7 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class WorkExperience {
+public class WorkExperience extends CvElement {
 
     private long id;
 

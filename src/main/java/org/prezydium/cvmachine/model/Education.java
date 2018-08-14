@@ -4,7 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-public class Education {
+public class Education extends CvElement {
 
     private long id;
 

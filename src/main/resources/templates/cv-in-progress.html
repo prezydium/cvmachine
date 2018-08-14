@@ -58,13 +58,12 @@
         <a class="btn btn-primary pull-right" href="/personaldata">Edit personal data</a>
     </div>
     <br>
-    <hr style="width: 80%; color: black; height: 2px; background-color:black;" />
+    <hr style="width: 80%; color: black; height: 2px; background-color:black;"/>
     <br>
     <div class="row">
-        Education Data:
-        <button type="button" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-plus-sign"></span>
-        </button>
+        <a class="btn btn-default btn-sm" th:href="@{/education}">
+            <span class="glyphicon glyphicon-plus-sign"> Education:</span>
+        </a>
     </div>
     <div id="edu" th:each="educationMapInstance : *{educationMap}">
         <div class="row cv-date">
@@ -79,18 +78,18 @@
         </div>
         <div class="row">
             <a class="btn btn-primary pull-right" th:href="@{/education(delete, id=${educationMapInstance.value.id})}">Delete</a>
-            <a class="btn btn-primary pull-right" th:href="@{/education(edit, id=${educationMapInstance.value.id})}">Edit education info</a>
+            <a class="btn btn-primary pull-right" th:href="@{/education(edit, id=${educationMapInstance.value.id})}">Edit
+                education info</a>
 
         </div>
         <br>
     </div>
-    <hr style="width: 80%; color: black; height: 2px; background-color:black;" />
+    <hr style="width: 80%; color: black; height: 2px; background-color:black;"/>
     <br>
     <div class="row">
-        Work Experience:
-        <button type="button" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-plus-sign"></span>
-        </button>
+        <a class="btn btn-default btn-sm" th:href="@{/experience}">
+            <span class="glyphicon glyphicon-plus-sign"> Experience:</span>
+        </a>
     </div>
     <div id="work" th:each="workExperienceInstance : *{workExperienceMap}">
         <div class="row cv-date">
@@ -104,17 +103,19 @@
             <div class="col-md-10" th:text="${workExperienceInstance.value.description}"></div>
         </div>
         <div class="row">
-            <a class="btn btn-primary pull-right" th:href="@{/experience(delete, id=${workExperienceInstance.value.id})}">Delete</a>
-            <a class="btn btn-primary pull-right" th:href="@{/experience(edit, id=${workExperienceInstance.value.id})}">Edit work experience info</a>
+            <a class="btn btn-primary pull-right"
+               th:href="@{/experience(delete, id=${workExperienceInstance.value.id})}">Delete</a>
+            <a class="btn btn-primary pull-right" th:href="@{/experience(edit, id=${workExperienceInstance.value.id})}">Edit
+                work experience info</a>
         </div>
         <br>
     </div>
-    <hr style="width: 80%; color: black; height: 2px; background-color:black;" />
+    <hr style="width: 80%; color: black; height: 2px; background-color:black;"/>
     <div class="row">
-        Skills:
-        <button type="button" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-plus-sign"></span>
-        </button>
+
+        <a class="btn btn-default btn-sm" th:href="@{/skill}">
+            <span class="glyphicon glyphicon-plus-sign"> Skills:</span>
+        </a>
     </div>
     <div id="skills" th:each="skillInstance : *{skillMap}">
         <div class="row">

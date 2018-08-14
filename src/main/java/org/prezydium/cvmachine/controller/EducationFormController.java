@@ -2,6 +2,7 @@ package org.prezydium.cvmachine.controller;
 
 import org.prezydium.cvmachine.model.CVModel;
 import org.prezydium.cvmachine.model.Education;
+import org.prezydium.cvmachine.utils.NextId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -47,7 +48,8 @@ public class EducationFormController {
     public RedirectView saveEducation(@ModelAttribute Education education, HttpSession httpSession) {
         LOG.info("Processing education: ".concat(education.toString()));
         CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
-        cvModel.getEducationMap().put(education.getId(), education);
+        long id = NextId.getNextId(cvModel.getEducationMap());
+        cvModel.getEducationMap().put(id, education);
         return new RedirectView("/");
     }
 }

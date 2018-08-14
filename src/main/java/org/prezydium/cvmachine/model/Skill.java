@@ -1,6 +1,6 @@
 package org.prezydium.cvmachine.model;
 
-public class Skill {
+public class Skill extends CvElement {
 
     private long id;
     private String name;
