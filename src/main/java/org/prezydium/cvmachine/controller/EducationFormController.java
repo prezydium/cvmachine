@@ -3,7 +3,6 @@ package org.prezydium.cvmachine.controller;
 import org.prezydium.cvmachine.model.CVModel;
 import org.prezydium.cvmachine.model.Education;
 import org.prezydium.cvmachine.service.SaveNewCvElementService;
-import org.prezydium.cvmachine.utils.NextId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -24,7 +23,7 @@ public class EducationFormController {
     @GetMapping(path = "/education")
     public ModelAndView educationProvider(HttpSession httpSession) {
         ModelAndView modelAndView = new ModelAndView("education");
-        modelAndView.addObject("education",new Education());
+        modelAndView.addObject("education", new Education());
         return modelAndView;
     }
 
@@ -48,7 +47,9 @@ public class EducationFormController {
     @PostMapping("/education")
     public RedirectView saveEducation(@ModelAttribute Education education, HttpSession httpSession) {
         LOG.info("Processing education: ".concat(education.toString()));
-        new SaveNewCvElementService().save(httpSession, education);
+        CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
+        SaveNewCvElementService saveNewCvElementService = new SaveNewCvElementService(cvModel);
+        httpSession.setAttribute("cvModel", saveNewCvElementService.save(education));
         return new RedirectView("/");
     }
 }

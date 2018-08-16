@@ -2,6 +2,7 @@ package org.prezydium.cvmachine.controller;
 
 import org.prezydium.cvmachine.model.CVModel;
 import org.prezydium.cvmachine.model.WorkExperience;
+import org.prezydium.cvmachine.service.SaveNewCvElementService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -47,7 +48,8 @@ public class WorkExperienceFormController {
     public RedirectView saveExperience(@ModelAttribute WorkExperience experience, HttpSession httpSession) {
         LOG.info("Processing experience: ".concat(experience.toString()));
         CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
-        cvModel.getWorkExperienceMap().put(experience.getId(), experience);
+        SaveNewCvElementService saveNewCvElementService = new SaveNewCvElementService(cvModel);
+        httpSession.setAttribute("cvModel", saveNewCvElementService.save(experience));
         return new RedirectView("/");
     }
 }
