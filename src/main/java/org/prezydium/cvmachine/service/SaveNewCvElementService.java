@@ -21,8 +21,8 @@ public class SaveNewCvElementService {
     }
 
     public CVModel save(CvElement cvElement) {
-        long id = NextId.getNextId(cvModel.getEducationMap());
         Map map = mapWithCvElementMaps.get(cvElement.getClass());
+        long id = NextId.getNextId(map);
         map.put(id, cvElement);
         return this.cvModel;
     }
