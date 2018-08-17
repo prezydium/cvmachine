@@ -33,12 +33,12 @@ public class TestUser {
         education.setSchoolName("INFOSHER");
         education.setStartDate(LocalDate.of(2015, 1, 22));
         education.setEndDate(LocalDate.of(2017, 7, 4));
-        education.setDescription("LERNEN Programmer\n * much lernen\n * much fun \n * arbeit");
+        education.setDescription("LERNEN Programmer * much lernen * much fun  * arbeit");
         education2.setId(1);
         education2.setSchoolName("kindergarten");
         education2.setStartDate(LocalDate.of(2015, 1, 22));
         education2.setEndDate(LocalDate.of(2017, 7, 4));
-        education2.setDescription("LERNEN Programmer in kindergarten\n * fun\n * much fun");
+        education2.setDescription("LERNEN Programmer in kindergarten * fun * much fun");
         cvModel.setEducationMap(new TreeMap<Long, Education>() {{
             put(0L, education);
             put(1L, education2);

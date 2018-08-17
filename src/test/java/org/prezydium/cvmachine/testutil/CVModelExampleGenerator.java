@@ -30,12 +30,12 @@ public class CVModelExampleGenerator {
         education.setSchoolName("INFOSHER");
         education.setStartDate(LocalDate.of(2015, 1, 22));
         education.setEndDate(LocalDate.of(2017, 7, 4));
-        education.setDescription("LERNEN Programmer\n * much lernen\n * much fun \n * arbeit");
+        education.setDescription("LERNEN Programmer * much lernen * much fun  * arbeit");
         education2.setId(1);
         education2.setSchoolName("kindergarten");
         education2.setStartDate(LocalDate.of(2015, 1, 22));
         education2.setEndDate(LocalDate.of(2017, 7, 4));
-        education2.setDescription("LERNEN Programmer in kindergarten\n * fun\n * much fun");
+        education2.setDescription("LERNEN Programmer in kindergarten * fun * much fun");
         cvModel.setEducationMap(new TreeMap<Long, Education>() {{
             put(0L, education);
             put(1L, education2);
@@ -46,11 +46,11 @@ public class CVModelExampleGenerator {
         workExperience.setStartDate(LocalDate.of(2014, 1, 22));
         workExperience2.setId(1);
         workExperience.setEndDate(LocalDate.of(2016, 12, 4));
-        workExperience.setDescription("NIERZĄD\n * nothing lernen\n * much fun \n * arbeit not frei");
+        workExperience.setDescription("NIERZĄD * nothing lernen * much fun  * arbeit not frei");
         workExperience.setCompanyName("CITYHALL");
         workExperience2.setStartDate(LocalDate.of(2019, 11, 2));
         workExperience2.setEndDate(LocalDate.of(2020, 4, 4));
-        workExperience2.setDescription("Making ordnung\n * arbeit zum ordnung");
+        workExperience2.setDescription("Making ordnung * arbeit zum ordnung");
         workExperience2.setCompanyName("CleanUp House");
         cvModel.setWorkExperienceMap(new TreeMap<Long, WorkExperience>() {{
             put(0L, workExperience);
