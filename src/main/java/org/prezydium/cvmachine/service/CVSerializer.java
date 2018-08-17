@@ -1,6 +1,6 @@
 package org.prezydium.cvmachine.service;
 
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.prezydium.cvmachine.model.CVModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +12,9 @@ public class CVSerializer {
     Logger logger = LoggerFactory.getLogger(CVSerializer.class);
 
     public void serializeCVModelToXMLFile(CVModel cvModel, String path, String fileName) {
-        XmlMapper xmlMapper = new XmlMapper();
+        ObjectMapper objectMapper = new ObjectMapper();
         try {
-            xmlMapper.writeValue(new File(new StringBuilder()
+            objectMapper.writeValue(new File(new StringBuilder()
                     .append(path)
                     .append("/")
                     .append(fileName)
@@ -28,12 +28,12 @@ public class CVSerializer {
 
     public CVModel deserializeFromXMLToCVModel(String path) {
         File file = new File(path);
-        XmlMapper xmlMapper = new XmlMapper();
+        ObjectMapper objectMapper = new ObjectMapper();
         String xml;
         CVModel cvModel = new CVModel();
         try {
             xml = inputStreamToString(new FileInputStream(file));
-            cvModel = xmlMapper.readValue(xml, CVModel.class);
+            cvModel = objectMapper.readValue(xml, CVModel.class);
         } catch (IOException e) {
             logger.error("Error while reading CV from file: " + e.getMessage());
         }
