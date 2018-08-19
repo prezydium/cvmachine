@@ -45,11 +45,19 @@ public class WorkExperienceFormController {
     }
 
     @PostMapping("/experience")
-    public RedirectView saveExperience(@ModelAttribute WorkExperience experience, HttpSession httpSession) {
+    public RedirectView saveNewExperience(@ModelAttribute WorkExperience experience, HttpSession httpSession) {
         LOG.info("Processing experience: ".concat(experience.toString()));
         CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
         SaveNewCvElementService saveNewCvElementService = new SaveNewCvElementService(cvModel);
         httpSession.setAttribute("cvModel", saveNewCvElementService.save(experience));
+        return new RedirectView("/");
+    }
+
+    @PostMapping(value = "/experience", params = {"id"})
+    public RedirectView saveEditedExperience(@ModelAttribute WorkExperience workExperience, HttpSession httpSession, @RequestParam("id") long id) {
+        LOG.info("Processing skill: ".concat(workExperience.toString()));
+        CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
+        cvModel.getWorkExperienceMap().put(id, workExperience);
         return new RedirectView("/");
     }
 }

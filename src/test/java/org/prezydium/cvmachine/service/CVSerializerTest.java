@@ -9,9 +9,7 @@ import org.prezydium.cvmachine.model.CVModel;
 import org.prezydium.cvmachine.testutil.CVModelExampleGenerator;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Paths;
@@ -42,7 +40,7 @@ public class CVSerializerTest {
         //when
         cvSerializer.serializeCVModelToXMLFile(cvModel, testFolderPath, fileName);
         //then
-        Assertions.assertThat(Files.exists(Paths.get(testFolderPath + "\\" + fileName + ".xml"), LinkOption.NOFOLLOW_LINKS)).isTrue();
+        Assertions.assertThat(Files.exists(Paths.get(testFolderPath + "/" + fileName + ".json"), LinkOption.NOFOLLOW_LINKS)).isTrue();
     }
 
     @Test
@@ -50,10 +48,9 @@ public class CVSerializerTest {
         String fileName = "test2";
         //when
         cvSerializer.serializeCVModelToXMLFile(cvModel, testFolderPath, fileName);
-        CVModel actualCVModel = cvSerializer.deserializeFromXMLToCVModel(testFolderPath + "\\" + fileName + ".xml");
+        CVModel actualCVModel = cvSerializer.deserializeFromXMLToCVModel(testFolderPath + "/" + fileName + ".json");
         //then
         Assertions.assertThat(actualCVModel.getEducationMap()).isNotEmpty();
-/*TODO*/
     }
 
 }

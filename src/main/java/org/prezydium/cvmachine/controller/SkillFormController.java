@@ -45,11 +45,19 @@ public class SkillFormController {
     }
 
     @PostMapping("/skill")
-    public RedirectView saveEducation(@ModelAttribute Skill skill, HttpSession httpSession) {
+    public RedirectView saveNewSkill(@ModelAttribute Skill skill, HttpSession httpSession) {
         LOG.info("Processing skill: ".concat(skill.toString()));
         CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
         SaveNewCvElementService saveNewCvElementService = new SaveNewCvElementService(cvModel);
         httpSession.setAttribute("cvModel", saveNewCvElementService.save(skill));
+        return new RedirectView("/");
+    }
+
+    @PostMapping(value = "/skill", params = {"id"})
+    public RedirectView saveEditedSkill(@ModelAttribute Skill skill, HttpSession httpSession, @RequestParam("id") long id) {
+        LOG.info("Processing skill: ".concat(skill.toString()));
+        CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
+        cvModel.getSkillMap().put(id, skill);
         return new RedirectView("/");
     }
 }

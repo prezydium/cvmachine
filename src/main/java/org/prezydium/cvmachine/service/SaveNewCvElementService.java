@@ -9,7 +9,7 @@ import java.util.Map;
 public class SaveNewCvElementService {
 
     private CVModel cvModel;
-    Map<Class, Map<Long, ? extends CvElement>> mapWithCvElementMaps;
+    private Map<Class, Map<Long, ? extends CvElement>> mapWithCvElementMaps;
 
     public SaveNewCvElementService(CVModel cvModel) {
         this.cvModel = cvModel;

@@ -8,7 +8,12 @@
 </head>
 <body>
 <div class="container" th:object="${cvModel}">
-    <h1>CREATION IN PROGRESS</h1>
+    <div class="row">
+        <h1>CREATION IN PROGRESS</h1>
+        <a class="btn btn-default btn-sm" th:href="@{/education}">
+            <span class="glyphicon glyphicon-floppy-save"> Save to file</span>
+        </a>
+    </div>
     <div class="row">
         Personal Data:
     </div>
@@ -77,8 +82,8 @@
             <div class="col-md-10" th:text="${educationMapInstance.value.description}"></div>
         </div>
         <div class="row">
-            <a class="btn btn-primary pull-right" th:href="@{/education(delete, id=${educationMapInstance.value.id})}">Delete</a>
-            <a class="btn btn-primary pull-right" th:href="@{/education(edit, id=${educationMapInstance.value.id})}">Edit
+            <a class="btn btn-primary pull-right" th:href="@{/education(delete, id=${educationMapInstance.key})}">Delete</a>
+            <a class="btn btn-primary pull-right" th:href="@{/education(edit, id=${educationMapInstance.key})}">Edit
                 education info</a>
 
         </div>
@@ -104,8 +109,8 @@
         </div>
         <div class="row">
             <a class="btn btn-primary pull-right"
-               th:href="@{/experience(delete, id=${workExperienceInstance.value.id})}">Delete</a>
-            <a class="btn btn-primary pull-right" th:href="@{/experience(edit, id=${workExperienceInstance.value.id})}">Edit
+               th:href="@{/experience(delete, id=${workExperienceInstance.key})}">Delete</a>
+            <a class="btn btn-primary pull-right" th:href="@{/experience(edit, id=${workExperienceInstance.key})}">Edit
                 work experience info</a>
         </div>
         <br>
@@ -121,8 +126,8 @@
         <div class="row">
             <div class="col-md-5" th:text="${skillInstance.value.name}"></div>
         </div>
-        <a class="btn btn-primary pull-right" th:href="@{/skill(delete, id=${skillInstance.value.id})}">Delete</a>
-        <a class="btn btn-primary pull-right" th:href="@{/skill(edit, id=${skillInstance.value.id})}">Edit skill</a>
+        <a class="btn btn-primary pull-right" th:href="@{/skill(delete, id=${skillInstance.key})}">Delete</a>
+        <a class="btn btn-primary pull-right" th:href="@{/skill(edit, id=${skillInstance.key})}">Edit skill</a>
         <br>
     </div>
     <br>

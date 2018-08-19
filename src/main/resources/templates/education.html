@@ -35,6 +35,7 @@
                     <input class="form-control" type="date" name="endDate" id="endDate" th:field="*{endDate}"><br>
                 </div>
             </div>
+            <input type="hidden" name="id" th:value="${param.id != null} ? ${param.id}" />
             <br><br>
             <input type="submit" class="btn btn-primary" value="Submit data">
         </form>

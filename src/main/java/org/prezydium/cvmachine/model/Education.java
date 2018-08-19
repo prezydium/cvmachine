@@ -2,11 +2,11 @@ package org.prezydium.cvmachine.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Education extends CvElement {
+public class Education extends CvElement implements Serializable {
 
-    private long id;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
@@ -19,14 +19,6 @@ public class Education extends CvElement {
     private String description;
 
     public Education() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public LocalDate getStartDate() {
@@ -62,25 +54,12 @@ public class Education extends CvElement {
     }
 
     @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Education{");
-        sb.append("id=").append(id);
-        sb.append(", startDate=").append(startDate);
-        sb.append(", endDate=").append(endDate);
-        sb.append(", schoolName='").append(schoolName).append('\'');
-        sb.append(", description='").append(description).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Education education = (Education) o;
 
-        if (id != education.id) return false;
         if (startDate != null ? !startDate.equals(education.startDate) : education.startDate != null) return false;
         if (endDate != null ? !endDate.equals(education.endDate) : education.endDate != null) return false;
         if (schoolName != null ? !schoolName.equals(education.schoolName) : education.schoolName != null) return false;
@@ -89,11 +68,21 @@ public class Education extends CvElement {
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
+        int result = startDate != null ? startDate.hashCode() : 0;
         result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
         result = 31 * result + (schoolName != null ? schoolName.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Education{");
+        sb.append("startDate=").append(startDate);
+        sb.append(", endDate=").append(endDate);
+        sb.append(", schoolName='").append(schoolName).append('\'');
+        sb.append(", description='").append(description).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

@@ -26,12 +26,10 @@ public class CVModelExampleGenerator {
         cvModel.setLegalNote("test legal note");
         Education education = new Education();
         Education education2 = new Education();
-        education.setId(0);
         education.setSchoolName("INFOSHER");
         education.setStartDate(LocalDate.of(2015, 1, 22));
         education.setEndDate(LocalDate.of(2017, 7, 4));
         education.setDescription("LERNEN Programmer * much lernen * much fun  * arbeit");
-        education2.setId(1);
         education2.setSchoolName("kindergarten");
         education2.setStartDate(LocalDate.of(2015, 1, 22));
         education2.setEndDate(LocalDate.of(2017, 7, 4));
@@ -41,10 +39,8 @@ public class CVModelExampleGenerator {
             put(1L, education2);
         }});
         WorkExperience workExperience = new WorkExperience();
-        workExperience.setId(0);
         WorkExperience workExperience2 = new WorkExperience();
         workExperience.setStartDate(LocalDate.of(2014, 1, 22));
-        workExperience2.setId(1);
         workExperience.setEndDate(LocalDate.of(2016, 12, 4));
         workExperience.setDescription("NIERZĄD * nothing lernen * much fun  * arbeit not frei");
         workExperience.setCompanyName("CITYHALL");
@@ -63,9 +59,9 @@ public class CVModelExampleGenerator {
         Skill skill3 = new Skill();
         skill3.setName("scrum");
         cvModel.setSkillMap(new TreeMap<Long, Skill>(){{
-            put(0L, new Skill(0L, "JAVA"));
-            put(1L, new Skill(1L, "HTML"));
-            put(2L, new Skill(2L, "scrum"));
+            put(0L, skill);
+            put(1L, skill2);
+            put(2L, skill3);
 
         }});
         return cvModel;

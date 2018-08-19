@@ -45,11 +45,19 @@ public class EducationFormController {
     }
 
     @PostMapping("/education")
-    public RedirectView saveEducation(@ModelAttribute Education education, HttpSession httpSession) {
+    public RedirectView saveNewEducation(@ModelAttribute Education education, HttpSession httpSession) {
         LOG.info("Processing education: ".concat(education.toString()));
         CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
         SaveNewCvElementService saveNewCvElementService = new SaveNewCvElementService(cvModel);
         httpSession.setAttribute("cvModel", saveNewCvElementService.save(education));
+        return new RedirectView("/");
+    }
+
+    @PostMapping(value = "/education", params = {"id"})
+    public RedirectView saveEditedEducation(@ModelAttribute Education education, HttpSession httpSession, @RequestParam("id") long id) {
+        LOG.info("Processing skill: ".concat(education.toString()));
+        CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
+        cvModel.getEducationMap().put(id, education);
         return new RedirectView("/");
     }
 }

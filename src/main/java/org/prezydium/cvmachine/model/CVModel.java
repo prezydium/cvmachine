@@ -1,9 +1,10 @@
 package org.prezydium.cvmachine.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.TreeMap;
 
-public class CVModel {
+public class CVModel implements Serializable{
 
     private UserData userData;
     private TreeMap<Long, Education> educationMap;
