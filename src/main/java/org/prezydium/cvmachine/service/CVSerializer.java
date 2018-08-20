@@ -21,6 +21,7 @@ public class CVSerializer {
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
+
     public void serializeCVModelToXMLFile(CVModel cvModel, String path, String fileName) {
         try {
             objectMapper.writeValue(new File(new StringBuilder()
