@@ -1,11 +1,11 @@
 package org.prezydium.cvmachine.controller;
 
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
 import org.prezydium.cvmachine.model.CVModel;
+import org.prezydium.cvmachine.service.FileUploaderService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,11 +21,10 @@ import java.io.*;
 public class UploadCV {
 
     private final ObjectMapper objectMapper;
+    private final static Logger logger = LoggerFactory.getLogger(UploadCV.class);
 
-    public UploadCV() {
-        this.objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JSR310Module());
-        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    public UploadCV(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
     }
 
     @RequestMapping(path = "/upload", method = RequestMethod.GET)
@@ -34,16 +33,14 @@ public class UploadCV {
     }
 
     @RequestMapping(path = "/upload", method = RequestMethod.POST)
-    public RedirectView handleFile(@RequestParam("file") MultipartFile mfile, HttpSession httpSession) throws IOException {
-        InputStream inputStream = mfile.getInputStream();
-        byte[] buffer = new byte[inputStream.available()];
-        inputStream.read(buffer);
-        File file = File.createTempFile("tempcv", "json");
-        OutputStream outputStream = new FileOutputStream(file);
-        outputStream.write(buffer);
-        JsonNode jsonNode = objectMapper.readTree(file);
-        CVModel cvModel = objectMapper.readValue(file, CVModel.class);
-        httpSession.setAttribute("cvModel", cvModel);
+    public RedirectView handleFile(@RequestParam("file") MultipartFile mfile, HttpSession httpSession) {
+        try {
+            CVModel cvModel = objectMapper.readValue(new FileUploaderService().processUpload(mfile), CVModel.class);
+            httpSession.setAttribute("cvModel", cvModel);
+            return new RedirectView("/");
+        } catch (IOException e) {
+            logger.error("error loading cv: " + e.getMessage());
+        }
         return new RedirectView("/");
     }
 }

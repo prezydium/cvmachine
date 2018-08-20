@@ -2,8 +2,6 @@ package org.prezydium.cvmachine.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
 import org.prezydium.cvmachine.model.CVModel;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
@@ -20,10 +18,8 @@ public class FileDownloader {
 
     private final ObjectMapper objectMapper;
 
-    public FileDownloader() {
-        this.objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JSR310Module());
-        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    public FileDownloader(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
     }
 
     @RequestMapping(name = "/save", method = RequestMethod.GET)
