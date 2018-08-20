@@ -1,140 +1,151 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/css/cvstyle.css" rel="stylesheet">
     <title>Welcome to cvmachine!</title>
 </head>
 <body>
-<div class="container" th:object="${cvModel}">
+<div class="container cv-body" th:object="${cvModel}">
     <div class="row">
-        <h1>CREATION IN PROGRESS</h1>
+        <div class="jumbotron text-center cv-header">
+            <h1>CREATION IN PROGRESS</h1>
+        </div>
         <a class="btn btn-default btn-sm" th:href="@{/save}">
             <span class="glyphicon glyphicon-floppy-save"> Save to file</span>
         </a>
         <a class="btn btn-default btn-sm" th:href="@{/upload}">
-            <span class="glyphicon glyphicon-floppy-save"> Upload file</span>
+            <span class="glyphicon glyphicon-floppy-open"> Upload file</span>
         </a>
     </div>
-    <div class="row">
-        Personal Data:
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            First name:
-        </div>
-        <div class="col-md-10" th:utext="*{userData.firstName}"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            Last name:
-        </div>
-        <div class="col-md-10" th:utext="*{userData.lastName}"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            Address:
-        </div>
-        <div class="col-md-10" th:utext="*{userData.address}"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            Email:
-        </div>
-        <div class="col-md-10" th:utext="*{userData.email}"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            Phone
-        </div>
-        <div class="col-md-10" th:utext="*{userData.phone}"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            LinkedIn:
-        </div>
-        <div class="col-md-10" th:utext="*{userData.linkedInProfile}"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            VCS repo:
-        </div>
-        <div class="col-md-10" th:utext="*{userData.vcsRepo}"></div>
-    </div>
-    <div class="row">
-        <a class="btn btn-primary pull-right" href="/personaldata">Edit personal data</a>
-    </div>
-    <br>
-    <hr style="width: 80%; color: black; height: 2px; background-color:black;"/>
-    <br>
-    <div class="row">
-        <a class="btn btn-default btn-sm" th:href="@{/education}">
-            <span class="glyphicon glyphicon-plus-sign"> Education:</span>
-        </a>
-    </div>
-    <div id="edu" th:each="educationMapInstance : *{educationMap}">
-        <div class="row cv-date">
-            <div class="col-md-10 col-md-offset-2">
-                <span th:text="'From' +  ${educationMapInstance.value.startDate}"></span>
-                <span th:text="' to ' + ${educationMapInstance.value.endDate}"></span>
+    <div class="cv-element">
+        <div class="row">
+            <br/>
+            <div class="col-md-2">
+                First name:
             </div>
+            <div class="col-md-10" th:utext="*{userData.firstName}"></div>
         </div>
         <div class="row">
-            <div class="col-md-2" th:text="${educationMapInstance.value.schoolName}"></div>
-            <div class="col-md-10" th:text="${educationMapInstance.value.description}"></div>
-        </div>
-        <div class="row">
-            <a class="btn btn-primary pull-right" th:href="@{/education(delete, id=${educationMapInstance.key})}">Delete</a>
-            <a class="btn btn-primary pull-right" th:href="@{/education(edit, id=${educationMapInstance.key})}">Edit
-                education info</a>
-
-        </div>
-        <br>
-    </div>
-    <hr style="width: 80%; color: black; height: 2px; background-color:black;"/>
-    <br>
-    <div class="row">
-        <a class="btn btn-default btn-sm" th:href="@{/experience}">
-            <span class="glyphicon glyphicon-plus-sign"> Experience:</span>
-        </a>
-    </div>
-    <div id="work" th:each="workExperienceInstance : *{workExperienceMap}">
-        <div class="row cv-date">
-            <div class="col-md-10 col-md-offset-2">
-                <span th:text="'From' + ${workExperienceInstance.value.startDate}"></span>
-                <span th:text="' to ' + ${workExperienceInstance.value.endDate}"></span>
+            <div class="col-md-2">
+                Last name:
             </div>
+            <div class="col-md-10" th:utext="*{userData.lastName}"></div>
         </div>
         <div class="row">
-            <div class="col-md-2" th:text="${workExperienceInstance.value.companyName}"></div>
-            <div class="col-md-10" th:text="${workExperienceInstance.value.description}"></div>
+            <div class="col-md-2">
+                Address:
+            </div>
+            <div class="col-md-10" th:utext="*{userData.address}"></div>
         </div>
         <div class="row">
-            <a class="btn btn-primary pull-right"
-               th:href="@{/experience(delete, id=${workExperienceInstance.key})}">Delete</a>
-            <a class="btn btn-primary pull-right" th:href="@{/experience(edit, id=${workExperienceInstance.key})}">Edit
-                work experience info</a>
+            <div class="col-md-2">
+                Email:
+            </div>
+            <div class="col-md-10" th:utext="*{userData.email}"></div>
         </div>
-        <br>
-    </div>
-    <hr style="width: 80%; color: black; height: 2px; background-color:black;"/>
-    <div class="row">
-
-        <a class="btn btn-default btn-sm" th:href="@{/skill}">
-            <span class="glyphicon glyphicon-plus-sign"> Skills:</span>
-        </a>
-    </div>
-    <div id="skills" th:each="skillInstance : *{skillMap}">
         <div class="row">
-            <div class="col-md-5" th:text="${skillInstance.value.name}"></div>
+            <div class="col-md-2">
+                Phone
+            </div>
+            <div class="col-md-10" th:utext="*{userData.phone}"></div>
         </div>
-        <a class="btn btn-primary pull-right" th:href="@{/skill(delete, id=${skillInstance.key})}">Delete</a>
-        <a class="btn btn-primary pull-right" th:href="@{/skill(edit, id=${skillInstance.key})}">Edit skill</a>
+        <div class="row">
+            <div class="col-md-2">
+                LinkedIn:
+            </div>
+            <div class="col-md-10" th:utext="*{userData.linkedInProfile}"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                VCS repo:
+            </div>
+            <div class="col-md-10" th:utext="*{userData.vcsRepo}"></div>
+        </div>
+        <div class="row">
+            <a class="btn btn-default pull-right" href="/personaldata">Edit personal data</a>
+        </div>
         <br>
     </div>
     <br>
+    <br>
+    <div class="cv-element">
+        <div class="row">
+            <a class="btn btn-default btn-sm" th:href="@{/education}">
+                <span class="glyphicon glyphicon-plus-sign"> Education:</span>
+            </a>
+        </div>
+        <div id="edu" th:each="educationMapInstance : *{educationMap}">
+            <div class="row cv-date">
+                <div class="col-md-10 col-md-offset-2">
+                    <span th:text="'From' +  ${educationMapInstance.value.startDate}"></span>
+                    <span th:text="' to ' + ${educationMapInstance.value.endDate}"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 cv-element-name" th:text="${educationMapInstance.value.schoolName}"></div>
+                <div class="col-md-10" th:text="${educationMapInstance.value.description}"></div>
+            </div>
+            <div class="row">
+                <div class="btn-group btn-grup-md pull-right">
 
+                    <a class="btn btn-default" th:href="@{/education(edit, id=${educationMapInstance.key})}">Edit</a>
+                    <a class="btn btn-default"
+                       th:href="@{/education(delete, id=${educationMapInstance.key})}">Delete</a>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+    <br>
+    <div class="cv-element">
+        <div class="row">
+            <a class="btn btn-default btn-sm" th:href="@{/experience}">
+                <span class="glyphicon glyphicon-plus-sign"> Experience:</span>
+            </a>
+        </div>
+        <div th:each="workExperienceInstance : *{workExperienceMap}">
+            <div class="row cv-date">
+                <div class="col-md-10 col-md-offset-2">
+                    <span th:text="'From' + ${workExperienceInstance.value.startDate}"></span>
+                    <span th:text="' to ' + ${workExperienceInstance.value.endDate}"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 cv-element-name" th:text="${workExperienceInstance.value.companyName}"></div>
+                <div class="col-md-10" th:text="${workExperienceInstance.value.description}"></div>
+            </div>
+            <div class="row">
+                <a class="btn btn-default pull-right" th:href="@{/experience(edit, id=${workExperienceInstance.key})}">Edit</a>
+                <a class="btn btn-default pull-right"
+                   th:href="@{/experience(delete, id=${workExperienceInstance.key})}">Delete</a>
+
+            </div>
+            <br>
+        </div>
+    </div>
+    <br/>
+
+    <div class="cv-element">
+        <div class="row">
+            <a class="btn btn-default btn-sm" th:href="@{/skill}">
+                <span class="glyphicon glyphicon-plus-sign"> Skills:</span>
+            </a>
+        </div>
+        <div th:each="skillInstance : *{skillMap}">
+            <div class="row">
+                <div class="col-md-5 cv-element-name" th:text="${skillInstance.value.name}"></div>
+            </div>
+            <div class="btn-group"><a class="btn btn-default pull-right"
+                                      th:href="@{/skill(edit, id=${skillInstance.key})}">Edit</a>
+                <a class="btn btn-default pull-right" th:href="@{/skill(delete, id=${skillInstance.key})}">Delete</a>
+            </div>
+            <br>
+        </div>
+        <br/>
+    </div>
+    <br>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
