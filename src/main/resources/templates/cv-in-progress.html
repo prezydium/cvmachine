@@ -64,7 +64,9 @@
             <div class="col-md-10" th:utext="*{userData.vcsRepo}"></div>
         </div>
         <div class="row">
-            <a class="btn btn-default pull-right" href="/personaldata">Edit personal data</a>
+            <div class="col-md-2 col-md-offset-10">
+                <a class="btn btn-default " href="/personaldata">Edit personal data</a>
+            </div>
         </div>
         <br>
     </div>
@@ -88,8 +90,7 @@
                 <div class="col-md-10" th:text="${educationMapInstance.value.description}"></div>
             </div>
             <div class="row">
-                <div class="btn-group btn-grup-md pull-right">
-
+                <div class="btn-group btn-group-md col-md-2 col-md-offset-10">
                     <a class="btn btn-default" th:href="@{/education(edit, id=${educationMapInstance.key})}">Edit</a>
                     <a class="btn btn-default"
                        th:href="@{/education(delete, id=${educationMapInstance.key})}">Delete</a>
@@ -117,10 +118,12 @@
                 <div class="col-md-10" th:text="${workExperienceInstance.value.description}"></div>
             </div>
             <div class="row">
-                <a class="btn btn-default pull-right" th:href="@{/experience(edit, id=${workExperienceInstance.key})}">Edit</a>
-                <a class="btn btn-default pull-right"
-                   th:href="@{/experience(delete, id=${workExperienceInstance.key})}">Delete</a>
-
+                <div class="btn-group btn-group-md col-md-2 col-md-offset-10">
+                    <a class="btn btn-default "
+                       th:href="@{/experience(edit, id=${workExperienceInstance.key})}">Edit</a>
+                    <a class="btn btn-default "
+                       th:href="@{/experience(delete, id=${workExperienceInstance.key})}">Delete</a>
+                </div>
             </div>
             <br>
         </div>
@@ -137,18 +140,20 @@
             <div class="row">
                 <div class="col-md-5 cv-element-name" th:text="${skillInstance.value.name}"></div>
             </div>
-            <div class="btn-group"><a class="btn btn-default pull-right"
-                                      th:href="@{/skill(edit, id=${skillInstance.key})}">Edit</a>
-                <a class="btn btn-default pull-right" th:href="@{/skill(delete, id=${skillInstance.key})}">Delete</a>
+            <div class="btn-group btn-group-md col-md-2 col-md-offset-10">
+                <a class="btn btn-default"
+                   th:href="@{/skill(edit, id=${skillInstance.key})}">Edit</a>
+                <a class="btn btn-default" th:href="@{/skill(delete, id=${skillInstance.key})}">Delete</a>
             </div>
-            <br>
         </div>
-        <br/>
+        <br><br><br>
     </div>
-    <br>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <br/>
+</div>
+<br>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </div>
 </body>
 </html>

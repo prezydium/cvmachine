@@ -3,13 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Add skill</title>
+    <link href="/css/cvstyle.css" rel="stylesheet">
+    <title>Choose file</title>
 </head>
 <body>
-<div class="container">
-    <h1>Enter skill info:</h1>
+<div class="container cv-body">
+    <div class="jumbotron text-center cv-header">
+        <h3>choose file:</h3>
+    </div>
     <div>
-        <form class="form-horizontal" action="#" th:action="@{/upload}" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal cv-form" action="#" th:action="@{/upload}" method="post" enctype="multipart/form-data">
 
             <div class="form-group">
                 <label class="control-label col-sm-2" for="file">Skill name:</label>

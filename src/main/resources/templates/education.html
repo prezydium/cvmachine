@@ -3,13 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/css/cvstyle.css" rel="stylesheet">
     <title>Education Data</title>
 </head>
 <body>
-<div class="container">
-    <h1>Enter education info:</h1>
+<div class="container cv-body">
+    <div class="jumbotron text-center cv-header">
+        <h3>Enter education info:</h3>
+    </div>
     <div>
-        <form class="form-horizontal cv-element" action="#" th:action="@{/education}" th:object="${education}" method="post">
+        <form class="form-horizontal cv-form" action="#" th:action="@{/education}" th:object="${education}"
+              method="post">
             <div class="form-group">
                 <label class="control-label col-sm-2" for="schoolName">School name:</label>
                 <div class="col-sm-6">
@@ -36,12 +40,13 @@
                 </div>
             </div>
             <div th:if="${param.id != null}">
-            <input type="hidden" name="id" th:value="${param.id != null} ? ${param.id}" />
+                <input type="hidden" name="id" th:value="${param.id != null} ? ${param.id}"/>
             </div>
             <br><br>
             <input type="submit" class="btn btn-primary" value="Submit data">
         </form>
     </div>
+
 </div>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
