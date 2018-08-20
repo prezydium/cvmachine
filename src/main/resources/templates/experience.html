@@ -3,13 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/css/cvstyle.css" rel="stylesheet">
     <title>Job Experience Data</title>
 </head>
 <body>
-<div class="container">
-    <h1>Enter job experience info:</h1>
+<div class="container cv-body">
+    <div class="jumbotron text-center cv-header">
+    <h3>Enter job experience info:</h3>
+    </div>
     <div>
-        <form class="form-horizontal" action="#" th:action="@{/experience}" th:object="${experience}" method="post">
+        <form class="form-horizontal cv-form" action="#" th:action="@{/experience}" th:object="${experience}" method="post">
             <div class="form-group">
                 <label class="control-label col-sm-2" for="companyName">Company name:</label>
                 <div class="col-sm-6">

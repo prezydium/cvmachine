@@ -22,7 +22,7 @@ public class FileDownloader {
         this.objectMapper = objectMapper;
     }
 
-    @RequestMapping(name = "/save", method = RequestMethod.GET)
+    @RequestMapping(path = "/save", method = RequestMethod.GET)
     public ResponseEntity getSerializedCv(HttpSession httpSession) throws JsonProcessingException {
 
         CVModel cvModel = (CVModel) httpSession.getAttribute("cvModel");
@@ -36,6 +36,4 @@ public class FileDownloader {
                         MediaType.parseMediaType("application/octet-stream"))
                 .body(new InputStreamResource(new ByteArrayInputStream(buf)));
     }
-
-
 }

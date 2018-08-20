@@ -1,0 +1,18 @@
+.cv-element, .cv-form {
+    background-color: #eee;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.cv-body{
+   background-color: #000;
+   min-height: 100vh;
+}
+.cv-element-name {
+    font-weight: bold;
+}
+.cv-header {
+    margin: 10px;
+}
+.cv-form {
+    padding: 10px;
+}
